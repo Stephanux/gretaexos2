@@ -1,0 +1,26 @@
+{
+    "GET/" : {
+        "controler": "index"
+    },
+    "GET/users": {
+        "controler": "users"
+    },
+    "GET/exos": {
+        "controler": "exos"
+    },
+    "GET/countries": {
+        "controler": "countries"
+    },
+    "GET/formUser": {
+        "controler": "formUser"
+    },
+    "GET/modifyUser": {
+        "controler": "modifyUser"
+    },
+    "GET/newUser": {
+        "controler": "newUser"
+    },
+    "GET/createUser": {
+        "controler": "createUser"
+    }
+}

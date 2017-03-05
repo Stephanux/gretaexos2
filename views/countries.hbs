@@ -1,0 +1,12 @@
+<h1> Express App : {{country.title}}</h1>
+<br>
+<select name="country">
+    {{#compare country null operator="tabempty"}} 
+        <option value="rien">Il n'y a pas de données dans la base countries</option>
+    {{else}} 
+        {{#each country}}
+            <option value="{{this.code}}" {{#compare this.code 'FR' operator='==' }}selected {{/compare}}>{{this.name}}</option>
+        {{/each}}
+    {{/compare}}
+
+</select>

@@ -1,5 +1,8 @@
 {
     "GET/" : {
+        "controler": "login"
+    },
+    "GET/index" : {
         "controler": "index"
     },
     "GET/users": {
@@ -22,5 +25,8 @@
     },
     "GET/createUser": {
         "controler": "createUser"
+    },
+    "GET/logout": {
+        "controler": "logout"
     }
 }

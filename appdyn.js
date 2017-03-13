@@ -5,17 +5,26 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
-var url = require('url');
+
+var session = require('express-session');
+var passport = require("passport");
+var LocalStrategy = require('passport-local').Strategy;
+
+
 
 GLOBAL.schemas = {};
 
 // Configuration de la connexion à la base de données via Mongoose :
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/gretajs', function (err) {
-    if (err) {throw err;} else console.log('Connected');
+    if (err) {
+        throw err;
+    } else console.log('Connected');
 });
 
 var database_schemas = JSON.parse(fs.readFileSync("database_schemas.json", 'utf8'));
+
+
 
 for (modelName in database_schemas) {
     GLOBAL.schemas[modelName] = mongoose.model(modelName, database_schemas[modelName].schema, database_schemas[modelName].collection);
@@ -23,6 +32,9 @@ for (modelName in database_schemas) {
 
 /* chargement configuration JSON des actions --> controleurs */
 GLOBAL.actions_json = JSON.parse(fs.readFileSync("./routes/config_actions.json", 'utf8'));
+
+console.log('data_schemas : ', database_schemas);
+console.log('actions_json : ', actions_json);
 
 var hbs = require('hbs');
 
@@ -65,12 +77,64 @@ app.set('view engine', '.hbs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+    cookieName: 'sessiongreta',
+    secret: 'AsipfGjdp*%dsDKNFNFKqoeID13456ÇRFÙOVFK'
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  GLOBAL.schemas["Users"].findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+// Authentification via passport
+passport.use(new LocalStrategy(
+    function (username, password, done) {
+        GLOBAL.schemas["Users"].findOne({
+            login: username
+        }, function (err, user) {
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                console.log("pas d'utilisateur trouvé");
+                return done(null, false, {
+                    message: 'Incorrect username.'
+                });
+            }
+            if (user.mdp != password) {
+                console.log("password erroné");
+                return done(null, false, {
+                    message: 'Incorrect password.'
+                });
+            }
+            console.log("utilisateur : ", user);
+            return done(null, user);
+        });
+    }
+));
+
+app.post('/authenticated', passport.authenticate('local'), function (req, res) {
+    if (req.session.passport.user != null) {
+        res.redirect('/index');
+    } else {
+        res.redirect('/newUser');
+    }
+});
 
 // Routes Managed dynamicaly
 require('./dynamicRouter')(app);

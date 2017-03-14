@@ -26,6 +26,11 @@
     "GET/createUser": {
         "controler": "createUser"
     },
+    "GET/deleteUser": {
+        "controler": "deleteUser",
+        "modelName": "Users",
+        "view": "users"
+    },
     "GET/logout": {
         "controler": "logout"
     }

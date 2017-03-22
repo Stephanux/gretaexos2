@@ -1,37 +1,38 @@
 {
-    "GET/" : {
-        "controler": "login"
-    },
-    "GET/index" : {
-        "controler": "index"
-    },
-    "GET/users": {
-        "controler": "users"
-    },
-    "GET/exos": {
-        "controler": "exos"
-    },
-    "GET/countries": {
-        "controler": "countries"
-    },
-    "GET/formUser": {
-        "controler": "formUser"
-    },
-    "GET/modifyUser": {
-        "controler": "modifyUser"
-    },
-    "GET/newUser": {
-        "controler": "newUser"
-    },
-    "GET/createUser": {
-        "controler": "createUser"
-    },
-    "GET/deleteUser": {
-        "controler": "deleteUser",
-        "modelName": "Users",
-        "view": "users"
-    },
-    "GET/logout": {
-        "controler": "logout"
-    }
+  "GET/": {
+    "controler": "login"
+  },
+  "GET/index": {
+    "controler": "index"
+  },
+  "GET/users": {
+    "controler": "users"
+  },
+  "GET/exos": {
+    "controler": "exos"
+  },
+  "GET/countries": {
+    "controler": "countries"
+  },
+  "GET/formUser": {
+    "controler": "formUser"
+  },
+  "GET/modifyUser": {
+    "controler": "modifyUser"
+  },
+  "GET/newUser": {
+    "controler": "newUser"
+  },
+  "GET/createUser": {
+    "controler": "createUser"
+  },
+  "GET/deleteUser": {
+    "controler": "deleteUser"
+  },
+  "GET/logout": {
+    "controler": "logout"
+  },
+  "GET/countriesSQL": {
+    "controler": "countriesSQL"
+  }
 }

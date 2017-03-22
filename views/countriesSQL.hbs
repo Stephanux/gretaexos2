@@ -1,0 +1,7 @@
+<h1> Express App : {{title}}</h1>
+<br>
+<select name="country">
+        {{#each country}}
+            <option value="{{this.code}}" {{#compare this.code 'FR' operator='==' }}selected {{/compare}}>{{this.libelle_fr}}</option>
+        {{/each}}
+</select>

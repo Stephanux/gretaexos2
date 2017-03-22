@@ -1,0 +1,7 @@
+<h1> Express App : {{title}}</h1>
+<br>
+<select name="company">
+        {{#each result}}
+            <option value="{{this._id}}">{{this.name}}-{{this.city}}</option>
+        {{/each}}
+</select>

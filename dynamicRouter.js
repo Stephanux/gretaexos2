@@ -16,12 +16,20 @@ function dynamicRouter(app) {
 function manageAction(req, res, next) {
   var path; // Le pathname après le port 3000 dans l'URL.
   var type; //(GET ou POST, ... http méthode)
-  var controler; // nom du contrôleur à charger
-  var params; // paramètre de l'URL mode REST
+
   path = url.parse(req.url).pathname;
+  type = req.method;
   // Il faut supprimer pour le routage le param après l'action
   if (path.split('/').length > 0) path = '/' + path.split('/')[1]
-  type = req.method;
+
+  // configuration du message pour les contrôleurs
+  req.message = {};
+  req.message.action = type + path;
+  req.message.view = GLOBAL.actions_json[type + path].view;
+  req.message.sql_query = GLOBAL.actions_json[type + path].sql_query;
+
+
+
   if (typeof GLOBAL.actions_json[type + path] == 'undefined') {
     console.log("Erreur pas d'action " + path + " dans l'annuaire");
     next();

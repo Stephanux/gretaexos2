@@ -33,6 +33,13 @@
     "controler": "logout"
   },
   "GET/countriesSQL": {
-    "controler": "countriesSQL"
+    "controler": "selectAllSQL",
+    "view": "countriesSQL",
+    "sql_query": "SELECT * FROM countries"
+  },
+  "GET/companiesSQL": {
+    "controler": "selectAllSQL",
+    "view": "companiesSQL",
+    "sql_query": "SELECT * FROM companies"
   }
 }

@@ -5,14 +5,14 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   if ((req.session.passport) && (req.session.passport.user != null)) {
 
-    GLOBAL.sequelize.query("SELECT * FROM countries", {
+    GLOBAL.sequelize.query(req.message.sql_query, {
         type: sequelize.QueryTypes.SELECT
       }) // SQL query success
       .then(function(datas) {
         console.log('listes des pays : ', datas);
-        res.render('countriesSQL', {
+        res.render(req.message.view, {
           title: 'List from SQL postgreSQL',
-          country: datas
+          result: datas
         });
       }) // SQL query error
       .catch(function(err) {

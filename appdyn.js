@@ -14,7 +14,7 @@ var LocalStrategy = require('passport-local').Strategy;
 // Chargement du module sequelize
 var Sequelize = require("sequelize");
 
-// configuration des paramètres de la connexion
+// configuration des paramètres de la connexion SQL Sequelize
 GLOBAL.sequelize = new Sequelize('gretajs', 'steph', 'azerty', {
   host: 'localhost',
   dialect: 'postgres',

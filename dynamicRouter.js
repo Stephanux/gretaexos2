@@ -22,11 +22,17 @@ function manageAction(req, res, next) {
   // Il faut supprimer pour le routage le param après l'action
   if (path.split('/').length > 0) path = '/' + path.split('/')[1]
 
-  // configuration du message pour les contrôleurs
+  // configuration du message pour les contrôleurs génériques
   req.message = {};
   req.message.action = type + path;
-  req.message.view = GLOBAL.actions_json[type + path].view;
-  req.message.sql_query = GLOBAL.actions_json[type + path].sql_query;
+  if (GLOBAL.actions_json[type + path].view)
+    req.message.view = GLOBAL.actions_json[type + path].view;
+  else
+    req.message.view = null;
+  if (GLOBAL.actions_json[type + path].sql_query)
+    req.message.sql_query = GLOBAL.actions_json[type + path].sql_query;
+  else
+    req.message.sql_query = null;
 
 
 

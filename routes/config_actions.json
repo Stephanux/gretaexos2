@@ -37,9 +37,19 @@
     "view": "countriesSQL",
     "sql_query": "SELECT * FROM countries"
   },
+  "GET/countrySQL": {
+    "controler": "selectByIdSQL",
+    "view": "countriesSQL",
+    "sql_query": "SELECT * FROM countries where code = :_id"
+  },
   "GET/companiesSQL": {
     "controler": "selectAllSQL",
     "view": "companiesSQL",
     "sql_query": "SELECT * FROM companies"
+  },
+  "GET/companySQL": {
+    "controler": "selectByIdSQL",
+    "view": "companiesSQL",
+    "sql_query": "SELECT * FROM companies where _id = :_id"
   }
 }

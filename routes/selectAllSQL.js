@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
         type: sequelize.QueryTypes.SELECT
       }) // SQL query success
       .then(function(datas) {
-        console.log('listes des pays : ', datas);
+        console.log('listes des datas : ', datas);
         res.render(req.message.view, {
           title: 'List from SQL postgreSQL',
           result: datas

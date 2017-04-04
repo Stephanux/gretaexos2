@@ -36,7 +36,7 @@ db.sequelize = sequelize;
 // Loader Sequelize models into GLOBAL.db
 fs.readdirSync(__dirname + '/models')
     .filter(function(file) {
-        return (file.indexOf(".") !== 0); // si on veut exclure du chargement un fichier dans le dossier && (file !== "index.js");
+        return (file.indexOf(".js") !== 0); // si on veut exclure du chargement un fichier dans le dossier && (file !== "index.js");
     })
     .forEach(function(file) {
         var model = sequelize.import(path.join(__dirname + '/models', file));
@@ -44,12 +44,20 @@ fs.readdirSync(__dirname + '/models')
         console.log('file read : ' + file);
     });
 // ERREUR DE JOINTURE VIA LES MODELES
-Object.keys(db).forEach(function(modelName) {
+
+GLOBAL.db["Companies"].belongsTo(GLOBAL.db["Countries"], {
+    foreignKey: "countrieId",
+    keyType: GLOBAL.db.Sequelize.INTEGER
+});
+
+//GLOBAL.db["Countries"].hasMany(GLOBAL.db["Companies"]);
+
+/* Object.keys(db).forEach(function(modelName) {
     if ("associate" in db[modelName]) {
         db[modelName].associate(db);
     }
     console.log("db[" + modelName + "]", db[modelName]);
-});
+}); */
 
 GLOBAL.schemas = {};
 

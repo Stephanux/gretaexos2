@@ -2,6 +2,6 @@
 <br>
 <select name="company">
         {{#each result}}
-            <option value="{{this._id}}">{{this.name}}-{{this.city}}</option>
+            <option value="{{this._id}}">{{this.name}}-{{this.city}} - {{this.Country.code}} - {{this.Country.libelle_us}}</option>
         {{/each}}
 </select>

@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-    var Companies = sequelize.define('Companies', {
+    var Companies = sequelize.define('companies', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -33,17 +33,16 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true
         }
         /*,
-        countrieId: {
-          type: DataTypes.INTEGER,
-          allowNull: true,
-          references: {
-            model: 'countries',
-            key: 'id'
-          }
-        }*/
+                countrieId: {
+                    type: DataTypes.INTEGER,
+                    allowNull: true,
+                    references: {
+                        model: 'countries',
+                        key: 'id'
+                    }
+                }*/
     }, {
         tableName: 'companies'
     });
-
     return Companies;
 };

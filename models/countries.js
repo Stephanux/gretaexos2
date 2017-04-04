@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('Countries', {
+    var Countries = sequelize.define('countries', {
         code: {
             type: DataTypes.TEXT,
             allowNull: false
@@ -21,14 +21,7 @@ module.exports = function(sequelize, DataTypes) {
         }
     }, {
         tableName: 'countries'
-    }, {
-        classMethods: {
-            associate: function(models) {
-                GLOBAL.db.Countries.hasOne(GLOBAL.db.Companies, {
-                    foreignKey: 'fk_countrieId'
-                })
-            }
-        }
     });
+
     return Countries;
 };

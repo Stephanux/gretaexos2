@@ -4,16 +4,14 @@ var router = express.Router();
 /* GET home page. */
 router.route('/').get(function(req, res, next) {
     if ((req.session.passport) && (req.session.passport.user != null)) {
-        GLOBAL.db["Companies"].belongsTo(GLOBAL.db["Countries"], {
-            foreignKey: "countrieId",
-            keyType: GLOBAL.db.Sequelize.INTEGER
-        });
+
         GLOBAL.db["Companies"].findAll({
             include: [{
                 model: GLOBAL.db.Countries,
                 keyType: GLOBAL.db.Sequelize.INTEGER
             }]
         }).then(function(datas) {
+            console.log('datas from models join : ', datas);
             res.render(req.message.view, {
                 title: 'List from SQL postgreSQL',
                 result: datas

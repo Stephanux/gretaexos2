@@ -5,8 +5,8 @@ var router = express.Router();
 router.route('/').get(function(req, res, next) {
     if ((req.session.passport) && (req.session.passport.user != null)) {
 
-        GLOBAL.sequelize.query(req.message.sql_query, {
-                type: sequelize.QueryTypes.SELECT
+        GLOBAL.db.sequelize.query(req.message.sql_query, {
+                type: db.sequelize.QueryTypes.SELECT
             }) // SQL query success
             .then(function(datas) {
                 console.log('listes des datas : ', datas);

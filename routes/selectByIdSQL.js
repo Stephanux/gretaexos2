@@ -7,9 +7,9 @@ router.route('/:_id').all(function(req, res, next) {
     if ((req.session.passport) && (req.session.passport.user != null)) {
         var options = {};
         options.replacements = req.params;
-        options.type = sequelize.QueryTypes.SELECT;
+        options.type = db.sequelize.QueryTypes.SELECT;
 
-        GLOBAL.sequelize.query(req.message.sql_query, options)
+        GLOBAL.db.sequelize.query(req.message.sql_query, options)
             // SQL query success
             .then(function(datas) {
                 console.log('listes des datas : ', datas);

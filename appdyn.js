@@ -12,12 +12,18 @@ var LocalStrategy = require('passport-local').Strategy;
 
 /** todo : ici initialiser la connexion à la base postgreSQL via Sequelize */
 // Chargement du module sequelize
+GLOBAL.db = {};
 var Sequelize = require("sequelize");
+db.Sequelize = Sequelize;
 
+GLOBAL.modelsSeq = {};
 // configuration des paramètres de la connexion SQL Sequelize
-GLOBAL.sequelize = new Sequelize('gretajs', 'steph', 'azerty', {
+var sequelize = new Sequelize('gretajs', 'steph', 'azerty', {
     host: 'localhost',
     dialect: 'postgres',
+    define: {
+        timestamps: false
+    },
 
     pool: {
         max: 5,
@@ -25,6 +31,26 @@ GLOBAL.sequelize = new Sequelize('gretajs', 'steph', 'azerty', {
         idle: 10000
     }
 });
+db.sequelize = sequelize;
+
+// Loader Sequelize models into GLOBAL.db
+fs.readdirSync(__dirname + '/models')
+    .filter(function(file) {
+        return (file.indexOf(".") !== 0); // si on veut exclure du chargement un fichier dans le dossier && (file !== "index.js");
+    })
+    .forEach(function(file) {
+        var model = sequelize.import(path.join(__dirname + '/models', file));
+        db[model.name] = model;
+        console.log('file read : ' + file);
+    });
+// ERREUR DE JOINTURE VIA LES MODELES
+Object.keys(db).forEach(function(modelName) {
+    if ("associate" in db[modelName]) {
+        db[modelName].associate(db);
+    }
+    console.log("db[" + modelName + "]", db[modelName]);
+});
+
 GLOBAL.schemas = {};
 
 // Configuration de la connexion à la base de données via Mongoose :

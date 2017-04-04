@@ -1,55 +1,63 @@
 {
-  "GET/": {
-    "controler": "login"
-  },
-  "GET/index": {
-    "controler": "index"
-  },
-  "GET/users": {
-    "controler": "users"
-  },
-  "GET/exos": {
-    "controler": "exos"
-  },
-  "GET/countries": {
-    "controler": "countries"
-  },
-  "GET/formUser": {
-    "controler": "formUser"
-  },
-  "GET/modifyUser": {
-    "controler": "modifyUser"
-  },
-  "GET/newUser": {
-    "controler": "newUser"
-  },
-  "GET/createUser": {
-    "controler": "createUser"
-  },
-  "GET/deleteUser": {
-    "controler": "deleteUser"
-  },
-  "GET/logout": {
-    "controler": "logout"
-  },
-  "GET/countriesSQL": {
-    "controler": "selectAllSQL",
-    "view": "countriesSQL",
-    "sql_query": "SELECT * FROM countries"
-  },
-  "GET/countrySQL": {
-    "controler": "selectByIdSQL",
-    "view": "countriesSQL",
-    "sql_query": "SELECT * FROM countries where code = :_id"
-  },
-  "GET/companiesSQL": {
-    "controler": "selectAllSQL",
-    "view": "companiesSQL",
-    "sql_query": "SELECT * FROM companies"
-  },
-  "GET/companySQL": {
-    "controler": "selectByIdSQL",
-    "view": "companiesSQL",
-    "sql_query": "SELECT * FROM companies where _id = :_id"
-  }
+    "GET/": {
+        "controler": "login"
+    },
+    "GET/index": {
+        "controler": "index"
+    },
+    "GET/users": {
+        "controler": "users"
+    },
+    "GET/exos": {
+        "controler": "exos"
+    },
+    "GET/countries": {
+        "controler": "countries"
+    },
+    "GET/formUser": {
+        "controler": "formUser"
+    },
+    "GET/modifyUser": {
+        "controler": "modifyUser"
+    },
+    "GET/newUser": {
+        "controler": "newUser"
+    },
+    "GET/createUser": {
+        "controler": "createUser"
+    },
+    "GET/deleteUser": {
+        "controler": "deleteUser"
+    },
+    "GET/logout": {
+        "controler": "logout"
+    },
+    "GET/countriesSQL": {
+        "controler": "selectAllSQL",
+        "view": "countriesSQL",
+        "sql_query": "SELECT * FROM countries"
+    },
+    "GET/countrySQL": {
+        "controler": "selectByIdSQL",
+        "view": "countriesSQL",
+        "sql_query": "SELECT * FROM countries where code = :_id"
+    },
+    "GET/companiesSQL": {
+        "controler": "selectAllSQL",
+        "view": "companiesSQL",
+        "sql_query": "SELECT * FROM companies"
+    },
+    "GET/companySQL": {
+        "controler": "selectByIdSQL",
+        "view": "companiesSQL",
+        "sql_query": "SELECT * FROM companies where id = :_id"
+    },
+    "GET/companiesModel": {
+        "controler": "selectAllFromModelSQL",
+        "view": "companiesSQL"
+    },
+    "GET/companiesCountryModel": {
+        "controler": "selectFromModelWithJoin",
+        "view": "companiesSQL"
+    }
 }

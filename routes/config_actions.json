@@ -63,5 +63,9 @@
     "GET/countryCompaniesModel": {
         "controler": "selectFromModelWithJoin2",
         "view": "countriesSQL"
+    },
+    "GET/countriesws": {
+        "controler": "countriesWS",
+        "view": "countriesWS"
     }
 }

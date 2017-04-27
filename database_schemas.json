@@ -1,18 +1,18 @@
 {
-    "Exercices" : {
+    "Exercices": {
         "collection": "exercices",
         "schema": {
             "_id": "ObjectId",
-	        "titre": "String",
-	        "liste": []
+            "titre": "String",
+            "liste": []
         }
     },
-    "Countries" : {
-	   "collection": "countries",
-	   "schema": {
+    "Countries": {
+        "collection": "countries",
+        "schema": {
             "_id": "ObjectId",
-	       "code": "String",
-	       "name": "String"
+            "code": "String",
+            "name": "String"
         }
     },
     "Users": {
@@ -36,6 +36,22 @@
             },
             "mobile_phone": "String",
             "home_phone": "String"
+        }
+    },
+    "Contacts": {
+        "collection": "contacts",
+        "schema": {
+            "_id": "ObjectId",
+            "nom": "String",
+            "prenom": "String",
+            "adresse1": "String",
+            "adresse2": "String",
+            "code_postal": "String",
+            "ville": "String",
+            "tel_modile": "String",
+            "tel_fixe": "String",
+            "email": "String",
+            "email2": "String"
         }
     }
 }
